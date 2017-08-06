@@ -29,8 +29,8 @@ target_include_directories( imgui
 set_target_properties( imgui
    PROPERTIES
    FOLDER "Dependencies"
+   PUBLIC_HEADER "${CMAKE_CURRENT_LIST_DIR}/imgui/imgui.h;${CMAKE_CURRENT_LIST_DIR}/imgui/imconfig.h"
 )
-
 
 add_library( nuklear STATIC
     nuklear.cpp
