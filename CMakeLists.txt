@@ -12,25 +12,29 @@ set_target_properties( stb
    FOLDER "Dependencies"
 )
 
-add_library( imgui STATIC
-    imgui/imconfig.h
-    imgui/imgui.cpp
-    imgui/imgui.h
-    imgui/imgui_demo.cpp
-    imgui/imgui_draw.cpp
-    imgui/imgui_internal.h
-    imgui/stb_rect_pack.h
-    imgui/stb_textedit.h
-    imgui/stb_truetype.h
+
+add_library( imgui INTERFACE )
+target_sources(imgui INTERFACE
+    ${CMAKE_CURRENT_LIST_DIR}/imgui/imconfig.h
+    ${CMAKE_CURRENT_LIST_DIR}/imgui/imgui.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/imgui/imgui.h
+    ${CMAKE_CURRENT_LIST_DIR}/imgui/imgui_demo.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/imgui/imgui_draw.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/imgui/imgui_internal.h
+    ${CMAKE_CURRENT_LIST_DIR}/imgui/stb_rect_pack.h
+    ${CMAKE_CURRENT_LIST_DIR}/imgui/stb_textedit.h
+    ${CMAKE_CURRENT_LIST_DIR}/imgui/stb_truetype.h
 )
 target_include_directories( imgui
-    PUBLIC imgui/
+    INTERFACE imgui/
 )
 set_target_properties( imgui
    PROPERTIES
-   FOLDER "Dependencies"
-   PUBLIC_HEADER "${CMAKE_CURRENT_LIST_DIR}/imgui/imgui.h;${CMAKE_CURRENT_LIST_DIR}/imgui/imconfig.h"
+   INTERFACE_HEADER "${CMAKE_CURRENT_LIST_DIR}/imgui/imgui.h;${CMAKE_CURRENT_LIST_DIR}/imgui/imconfig.h"
 )
+get_target_property(IMGUI_INTERFACE_SOURCES imgui INTERFACE_SOURCES)
+source_group(imgui FILES ${IMGUI_INTERFACE_SOURCES})
+
 
 add_library( nuklear STATIC
     nuklear.cpp
