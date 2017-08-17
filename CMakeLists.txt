@@ -32,35 +32,36 @@ set_target_properties( imgui
    PROPERTIES
    INTERFACE_HEADER "${CMAKE_CURRENT_LIST_DIR}/imgui/imgui.h;${CMAKE_CURRENT_LIST_DIR}/imgui/imconfig.h"
 )
-get_target_property(IMGUI_INTERFACE_SOURCES imgui INTERFACE_SOURCES)
-source_group(imgui FILES ${IMGUI_INTERFACE_SOURCES})
 
 
-add_library( nuklear STATIC
-    nuklear.cpp
-    nuklear/nuklear.h
+add_library( nuklear INTERFACE )
+target_sources(nuklear INTERFACE
+    ${CMAKE_CURRENT_LIST_DIR}/nuklear.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/nuklear/nuklear.h
 )
 target_include_directories( nuklear
-    PUBLIC nuklear/
-)
-target_compile_definitions( nuklear
-    PUBLIC -DNK_INCLUDE_FIXED_TYPES
-    PUBLIC -DNK_INCLUDE_DEFAULT_ALLOCATOR
-    PUBLIC -DNK_INCLUDE_STANDARD_IO
-    PUBLIC -DNK_INCLUDE_STANDARD_VARARGS
-    PUBLIC -DNK_INCLUDE_VERTEX_BUFFER_OUTPUT
-    PUBLIC -DNK_INCLUDE_VERTEX_BUFFER_OUTPUT
-    PUBLIC -DNK_INCLUDE_FONT_BAKING
-    PUBLIC -DNK_INCLUDE_DEFAULT_FONT
-    PUBLIC -DNK_VSNPRINTF=stbsp_vsnprintf
-)
-target_link_libraries( nuklear
-    PUBLIC stb
+    INTERFACE nuklear/
 )
 set_target_properties( nuklear
    PROPERTIES
-   FOLDER "Dependencies"
+   INTERFACE_HEADER "${CMAKE_CURRENT_LIST_DIR}/nuklear/nuklear.h"
 )
+
+target_compile_definitions( nuklear
+    INTERFACE -DNK_INCLUDE_FIXED_TYPES
+    INTERFACE -DNK_INCLUDE_DEFAULT_ALLOCATOR
+    INTERFACE -DNK_INCLUDE_STANDARD_IO
+    INTERFACE -DNK_INCLUDE_STANDARD_VARARGS
+    INTERFACE -DNK_INCLUDE_VERTEX_BUFFER_OUTPUT
+    INTERFACE -DNK_INCLUDE_VERTEX_BUFFER_OUTPUT
+    INTERFACE -DNK_INCLUDE_FONT_BAKING
+    INTERFACE -DNK_INCLUDE_DEFAULT_FONT
+    INTERFACE -DNK_VSNPRINTF=stbsp_vsnprintf
+)
+target_link_libraries( nuklear
+    INTERFACE stb
+)
+
 
 add_library(tinydir INTERFACE)
 target_include_directories( tinydir
