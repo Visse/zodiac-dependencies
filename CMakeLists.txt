@@ -111,6 +111,7 @@ target_include_directories( catch
 add_library(mgn STATIC
     mgn.cpp
     mgn/mgn/strpool.h
+    mgn/mgn/hashtable.h
 )
 set_target_properties( mgn
    PROPERTIES
