@@ -110,7 +110,7 @@ target_include_directories( catch
 
 add_library(mgn STATIC
     mgn.cpp
-    mgn/strpool.h
+    mgn/mgn/strpool.h
 )
 set_target_properties( mgn
    PROPERTIES

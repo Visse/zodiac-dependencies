@@ -1,2 +1,2 @@
 #define STRPOOL_IMPLEMENTATION
-#include "strpool.h"
+#include "mgn/strpool.h"
