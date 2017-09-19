@@ -121,3 +121,15 @@ target_include_directories( mgn
     PUBLIC mgn
 )
 
+add_library(tinyobjloader STATIC
+    tinyobjloader/tiny_obj_loader.h
+    tinyobjloader/tiny_obj_loader.cc
+)
+set_target_properties( tinyobjloader
+   PROPERTIES
+   FOLDER "Dependencies"
+)
+target_include_directories( tinyobjloader
+    PUBLIC tinyobjloader
+)
+
