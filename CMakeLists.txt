@@ -69,12 +69,25 @@ target_include_directories( tinydir
 )
 
 
-file(GLOB_RECURSE YAML_SOURCES yaml-cpp/src/*.h yaml-cpp/src/*.cpp)
-add_library(yaml-cpp STATIC ${YAML_SOURCES})
-target_include_directories( yaml-cpp
-    PUBLIC yaml-cpp/include
+file(GLOB YAML_HEADERS libyaml/include/*.h)
+file(GLOB YAML_SOURCES libyaml/src/*.c libyaml/src/*.h)
+add_library(libyaml STATIC
+    ${YAML_HEADERS}
+    ${YAML_SOURCES}
 )
-set_target_properties( yaml-cpp
+target_include_directories(libyaml
+    INTERFACE libyaml/include
+    PRIVATE libyaml/include/libyaml
+)
+target_compile_definitions(libyaml
+    PUBLIC YAML_DECLARE_STATIC
+    PUBLIC YAML_VERSION_MAJOR=0
+    PUBLIC YAML_VERSION_MINOR=1
+    PUBLIC YAML_VERSION_PATCH=7
+    PUBLIC YAML_VERSION_STRING="0.1.7"
+)
+
+set_target_properties(libyaml
    PROPERTIES
    FOLDER "Dependencies"
 )
