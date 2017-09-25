@@ -76,8 +76,7 @@ add_library(libyaml STATIC
     ${YAML_SOURCES}
 )
 target_include_directories(libyaml
-    INTERFACE libyaml/include
-    PRIVATE libyaml/include/libyaml
+    PUBLIC libyaml/include
 )
 target_compile_definitions(libyaml
     PUBLIC YAML_DECLARE_STATIC
@@ -86,11 +85,23 @@ target_compile_definitions(libyaml
     PUBLIC YAML_VERSION_PATCH=7
     PUBLIC YAML_VERSION_STRING="0.1.7"
 )
-
 set_target_properties(libyaml
    PROPERTIES
    FOLDER "Dependencies"
 )
+
+add_library(libyaml-cpp INTERFACE)
+target_sources(libyaml-cpp INTERFACE
+    ${CMAKE_CURRENT_LIST_DIR}/libyaml-cpp/include/libyaml-cpp.h
+    ${CMAKE_CURRENT_LIST_DIR}/libyaml-cpp/src/libyaml-cpp.cpp
+)
+target_link_libraries( libyaml-cpp
+    INTERFACE libyaml
+)
+target_include_directories(libyaml-cpp
+    INTERFACE ${CMAKE_CURRENT_LIST_DIR}/libyaml-cpp/include/
+)
+
 
 add_library(lz4 STATIC
     lz4/lib/lz4.h
