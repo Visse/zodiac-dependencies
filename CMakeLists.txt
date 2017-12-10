@@ -1,74 +1,66 @@
 
-add_library( stb STATIC
+############## stb ##############
+add_library(stb STATIC
     stb.cpp
     stb/stb_image.h
     stb/stb_sprintf.h
 )
-target_include_directories( stb
+target_include_directories(stb
     PUBLIC stb/
 )
-set_target_properties( stb
+set_target_properties(stb
    PROPERTIES
    FOLDER "Dependencies"
 )
 
 
-add_library( imgui INTERFACE )
-target_sources(imgui INTERFACE
-    ${CMAKE_CURRENT_LIST_DIR}/imgui/imconfig.h
-    ${CMAKE_CURRENT_LIST_DIR}/imgui/imgui.cpp
-    ${CMAKE_CURRENT_LIST_DIR}/imgui/imgui.h
-    ${CMAKE_CURRENT_LIST_DIR}/imgui/imgui_demo.cpp
-    ${CMAKE_CURRENT_LIST_DIR}/imgui/imgui_draw.cpp
-    ${CMAKE_CURRENT_LIST_DIR}/imgui/imgui_internal.h
-    ${CMAKE_CURRENT_LIST_DIR}/imgui/stb_rect_pack.h
-    ${CMAKE_CURRENT_LIST_DIR}/imgui/stb_textedit.h
-    ${CMAKE_CURRENT_LIST_DIR}/imgui/stb_truetype.h
+############## imgui ##############
+add_library(imgui STATIC
+    imgui/imconfig.h
+    imgui/imgui.cpp
+    imgui/imgui.h
+    imgui/imgui_demo.cpp
+    imgui/imgui_draw.cpp
+    imgui/imgui_internal.h
+    imgui/stb_rect_pack.h
+    imgui/stb_textedit.h
+    imgui/stb_truetype.h
 )
 target_include_directories( imgui
-    INTERFACE imgui/
-)
-set_target_properties( imgui
-   PROPERTIES
-   INTERFACE_HEADER "${CMAKE_CURRENT_LIST_DIR}/imgui/imgui.h;${CMAKE_CURRENT_LIST_DIR}/imgui/imconfig.h"
+    PUBLIC imgui/
 )
 
-
-add_library( nuklear INTERFACE )
-target_sources(nuklear INTERFACE
-    ${CMAKE_CURRENT_LIST_DIR}/nuklear.cpp
-    ${CMAKE_CURRENT_LIST_DIR}/nuklear/nuklear.h
+####### nuklear ####### 
+add_library( nuklear STATIC
+    nuklear.cpp
+    nuklear/nuklear.h
 )
 target_include_directories( nuklear
-    INTERFACE nuklear/
+    PUBLIC nuklear/
 )
-set_target_properties( nuklear
-   PROPERTIES
-   INTERFACE_HEADER "${CMAKE_CURRENT_LIST_DIR}/nuklear/nuklear.h"
-)
-
 target_compile_definitions( nuklear
-    INTERFACE -DNK_INCLUDE_FIXED_TYPES
-    INTERFACE -DNK_INCLUDE_DEFAULT_ALLOCATOR
-    INTERFACE -DNK_INCLUDE_STANDARD_IO
-    INTERFACE -DNK_INCLUDE_STANDARD_VARARGS
-    INTERFACE -DNK_INCLUDE_VERTEX_BUFFER_OUTPUT
-    INTERFACE -DNK_INCLUDE_VERTEX_BUFFER_OUTPUT
-    INTERFACE -DNK_INCLUDE_FONT_BAKING
-    INTERFACE -DNK_INCLUDE_DEFAULT_FONT
-    INTERFACE -DNK_VSNPRINTF=stbsp_vsnprintf
+    PUBLIC -DNK_INCLUDE_FIXED_TYPES
+    PUBLIC -DNK_INCLUDE_DEFAULT_ALLOCATOR
+    PUBLIC -DNK_INCLUDE_STANDARD_IO
+    PUBLIC -DNK_INCLUDE_STANDARD_VARARGS
+    PUBLIC -DNK_INCLUDE_VERTEX_BUFFER_OUTPUT
+    PUBLIC -DNK_INCLUDE_VERTEX_BUFFER_OUTPUT
+    PUBLIC -DNK_INCLUDE_FONT_BAKING
+    PUBLIC -DNK_INCLUDE_DEFAULT_FONT
+    PUBLIC -DNK_VSNPRINTF=stbsp_vsnprintf
 )
 target_link_libraries( nuklear
-    INTERFACE stb
+    PRIVATE stb
 )
 
 
+############## tinydir ##############
 add_library(tinydir INTERFACE)
 target_include_directories( tinydir
     INTERFACE tinydir
 )
 
-
+############## libyaml ##############
 file(GLOB YAML_HEADERS libyaml/include/*.h)
 file(GLOB YAML_SOURCES libyaml/src/*.c libyaml/src/*.h)
 add_library(libyaml STATIC
@@ -90,19 +82,22 @@ set_target_properties(libyaml
    FOLDER "Dependencies"
 )
 
-add_library(libyaml-cpp INTERFACE)
-target_sources(libyaml-cpp INTERFACE
-    ${CMAKE_CURRENT_LIST_DIR}/libyaml-cpp/include/libyaml-cpp.h
-    ${CMAKE_CURRENT_LIST_DIR}/libyaml-cpp/src/libyaml-cpp.cpp
+############## libyaml-cpp ##############
+add_library(libyaml-cpp STATIC
+    libyaml-cpp/include/libyaml-cpp.h
+    libyaml-cpp/src/libyaml-cpp.cpp
 )
 target_link_libraries( libyaml-cpp
-    INTERFACE libyaml
+    PRIVATE libyaml
 )
 target_include_directories(libyaml-cpp
-    INTERFACE ${CMAKE_CURRENT_LIST_DIR}/libyaml-cpp/include/
+    PUBLIC ${CMAKE_CURRENT_LIST_DIR}/libyaml-cpp/include/
+)
+target_compile_definitions(libyaml-cpp
+    PUBLIC LIBYAML_CPP_STATIC
 )
 
-
+############## lz4 ##############
 add_library(lz4 STATIC
     lz4/lib/lz4.h
     lz4/lib/lz4.c
@@ -127,11 +122,13 @@ set_target_properties( lz4
    FOLDER "Dependencies"
 )
 
+############## catch ##############
 add_library(catch INTERFACE)
 target_include_directories( catch
     INTERFACE Catch/include
 )
 
+############## mgn ##############
 add_library(mgn STATIC
     mgn.cpp
     mgn/mgn/strpool.h
@@ -145,6 +142,7 @@ target_include_directories( mgn
     PUBLIC mgn
 )
 
+############## tinyobjloader ##############
 add_library(tinyobjloader STATIC
     tinyobjloader/tiny_obj_loader.h
     tinyobjloader/tiny_obj_loader.cc
@@ -156,4 +154,5 @@ set_target_properties( tinyobjloader
 target_include_directories( tinyobjloader
     PUBLIC tinyobjloader
 )
+
 
