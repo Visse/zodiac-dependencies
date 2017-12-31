@@ -30,6 +30,11 @@ target_include_directories( imgui
     PUBLIC imgui/
 )
 
+set_target_properties( imgui
+   PROPERTIES
+   FOLDER "Dependencies"
+)
+
 ####### nuklear ####### 
 add_library( nuklear STATIC
     nuklear.cpp
@@ -51,6 +56,10 @@ target_compile_definitions( nuklear
 )
 target_link_libraries( nuklear
     PRIVATE stb
+)
+set_target_properties( nuklear
+   PROPERTIES
+   FOLDER "Dependencies"
 )
 
 
@@ -95,6 +104,10 @@ target_include_directories(libyaml-cpp
 )
 target_compile_definitions(libyaml-cpp
     PUBLIC LIBYAML_CPP_STATIC
+)
+set_target_properties(libyaml-cpp
+   PROPERTIES
+   FOLDER "Dependencies"
 )
 
 ############## lz4 ##############
@@ -154,5 +167,36 @@ set_target_properties( tinyobjloader
 target_include_directories( tinyobjloader
     PUBLIC tinyobjloader
 )
+
+############## SDL2 ##############
+
+# create a target named 'uninstall' to force sdl2 to skip creating that target
+# INTERFACE is a pseudo target, and
+add_library(uninstall INTERFACE)
+add_subdirectory(SDL2)
+set_target_properties(SDL2 SDL2main SDL2-static
+   PROPERTIES
+   FOLDER "Dependencies"
+)
+
+target_include_directories(SDL2
+    INTERFACE SDL2/include
+)
+
+
+############## glbinding ##############
+
+include (glbinding.cmake)
+set_target_properties (glbinding
+   PROPERTIES
+   FOLDER "Dependencies"
+)
+
+############## glm ##############
+add_library (glm INTERFACE)
+target_include_directories (glm
+    INTERFACE glm/
+)
+
 
 
