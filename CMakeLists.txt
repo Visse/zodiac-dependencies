@@ -199,4 +199,22 @@ target_include_directories (glm
 )
 
 
+############## remotery ##############
+add_library(remotery STATIC
+    Remotery/lib/Remotery.h
+    Remotery/lib/Remotery.c
+)
+target_include_directories(remotery
+    PUBLIC remotery/lib
+)
+set_target_properties(remotery
+   PROPERTIES
+   FOLDER "Dependencies"
+)
+target_compile_definitions(remotery
+    PUBLIC RMT_ENABLED=1
+    PUBLIC RMT_USE_OPENGL=1
+)
+
+
 
