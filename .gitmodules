@@ -1,42 +1,56 @@
 [submodule "Catch"]
-	path = Catch
-	url = https://github.com/catchorg/Catch2.git
+    path = Catch
+    url = https://github.com/catchorg/Catch2.git
+    shallow = true
 [submodule "Remotery"]
-	path = Remotery
-	url = https://github.com/Visse/Remotery.git
+    path = Remotery
+    url = https://github.com/Visse/Remotery.git
+    shallow = true
 [submodule "SDL2"]
-	path = SDL2
-	url = https://github.com/spurious/SDL-mirror.git
+    path = SDL2
+    url = https://github.com/spurious/SDL-mirror.git
+    shallow = true
 [submodule "glbinding"]
-	path = glbinding
-	url = https://github.com/Visse/glbinding.git
+    path = glbinding
+    url = https://github.com/Visse/glbinding.git
+    shallow = true
 [submodule "glm"]
-	path = glm
-	url = https://github.com/g-truc/glm.git
+    path = glm
+    url = https://github.com/g-truc/glm.git
+    shallow = true
 [submodule "imgui"]
-	path = imgui
-	url = https://github.com/Visse/imgui.git
+    path = imgui
+    url = https://github.com/Visse/imgui.git
+    shallow = true
 [submodule "libyaml"]
-	path = libyaml
-	url = https://github.com/Visse/libyaml.git
+    path = libyaml
+    url = https://github.com/Visse/libyaml.git
+    shallow = true
 [submodule "libyaml-cpp"]
-	path = libyaml-cpp
-	url = https://github.com/Visse/libyaml-cpp.git
+    path = libyaml-cpp
+    url = https://github.com/Visse/libyaml-cpp.git
+    shallow = true
 [submodule "lz4"]
-	path = lz4
-	url = https://github.com/lz4/lz4.git
+    path = lz4
+    url = https://github.com/lz4/lz4.git
+    shallow = true
 [submodule "mgn"]
-	path = mgn
-	url = https://github.com/Visse/mgn.git
+    path = mgn
+    url = https://github.com/Visse/mgn.git
+    shallow = true
 [submodule "nuklear"]
-	path = nuklear
-	url = https://github.com/Visse/nuklear.git
+    path = nuklear
+    url = https://github.com/Visse/nuklear.git
+    shallow = true
 [submodule "stb"]
-	path = stb
-	url = https://github.com/Visse/stb.git
+    path = stb
+    url = https://github.com/Visse/stb.git
+    shallow = true
 [submodule "tinydir"]
-	path = tinydir
-	url = https://github.com/Visse/tinydir.git
+    path = tinydir
+    url = https://github.com/Visse/tinydir.git
+    shallow = true
 [submodule "tinyobjloader"]
-	path = tinyobjloader
-	url = https://github.com/Visse/tinyobjloader.git
+    path = tinyobjloader
+    url = https://github.com/Visse/tinyobjloader.git
+    shallow = true
