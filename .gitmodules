@@ -1,0 +1,42 @@
+[submodule "Catch"]
+	path = Catch
+	url = https://github.com/catchorg/Catch2.git
+[submodule "Remotery"]
+	path = Remotery
+	url = https://github.com/Visse/Remotery.git
+[submodule "SDL2"]
+	path = SDL2
+	url = https://github.com/spurious/SDL-mirror.git
+[submodule "glbinding"]
+	path = glbinding
+	url = https://github.com/Visse/glbinding.git
+[submodule "glm"]
+	path = glm
+	url = https://github.com/g-truc/glm.git
+[submodule "imgui"]
+	path = imgui
+	url = https://github.com/Visse/imgui.git
+[submodule "libyaml"]
+	path = libyaml
+	url = https://github.com/Visse/libyaml.git
+[submodule "libyaml-cpp"]
+	path = libyaml-cpp
+	url = https://github.com/Visse/libyaml-cpp.git
+[submodule "lz4"]
+	path = lz4
+	url = https://github.com/lz4/lz4.git
+[submodule "mgn"]
+	path = mgn
+	url = https://github.com/Visse/mgn.git
+[submodule "nuklear"]
+	path = nuklear
+	url = https://github.com/Visse/nuklear.git
+[submodule "stb"]
+	path = stb
+	url = https://github.com/Visse/stb.git
+[submodule "tinydir"]
+	path = tinydir
+	url = https://github.com/Visse/tinydir.git
+[submodule "tinyobjloader"]
+	path = tinyobjloader
+	url = https://github.com/Visse/tinyobjloader.git
